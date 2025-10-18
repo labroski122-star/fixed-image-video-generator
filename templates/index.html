@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Immagine + MP3 → MP4 (1080p)</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generatore video — immagine fissa + audio</h1>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flash">
+            {% for m in messages %}
+              <li>{{ m }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <label>Immagine (jpg, png, gif):</label>
+        <input type="file" name="image" accept="image/*" required>
+
+        <label>Audio (mp3, wav, m4a):</label>
+        <input type="file" name="audio" accept="audio/*" required>
+
+        <button type="submit">Genera MP4 1080p</button>
+      </form>
+
+      <p class="note">Dopo la conversione verrai reindirizzato a un link per scaricare il file.</p>
+
+      <footer>
+        <p>Consiglio: installa ffmpeg sul server prima di eseguire l'app.</p>
+      </footer>
+    </div>
+  </body>
+</html>
